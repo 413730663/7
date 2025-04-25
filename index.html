@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品集選單</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 選單 -->
+  <ul class="menu" id="menu">
+    <li><a href="#" onclick="hideIframe()">首頁</a></li>
+    <li><a href="#about" onclick="loadIframe('https://413730663.github.io/5/')">自我介紹</a></li>
+    <li class="dropdown">
+      <a href="#portfolio">作品集</a>
+      <ul class="submenu">
+        <li><a href="#" onclick="loadIframe('https://413730663.github.io/2/')">第一周</a></li>
+        <li><a href="#" onclick="loadIframe('https://413730663.github.io/3/')">第二周</a></li>
+        <li><a href="#" onclick="loadIframe('https://413730663.github.io/4/')">第三周</a></li>
+        <li><a href="#" onclick="loadIframe('https://413730663.github.io/20250328/')">第四周</a></li>
+      </ul>
+    </li>
+    <li><a href="#quiz" onclick="loadIframe('https://413730663.github.io/20250321/')">測驗卷</a></li>
+    <li><a href="#tutorials" onclick="loadIframe('https://cfchen58.synology.me/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%882024/A2/week8/20250411_092029.mp4')">教學影片</a></li>
+  </ul>
+
+  <!-- 嵌入的 iframe -->
+  <iframe id="content-frame" src="" frameborder="0" style="display: none;"></iframe>
+
+  <!-- p5.js 動畫 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+  <script src="sketch.js"></script>
+  <script src="sketch.js"></script>
+
+  <script>
+    // 動態載入 iframe 網頁
+    function loadIframe(url) {
+      const iframe = document.getElementById('content-frame');
+      iframe.src = url;
+
+      // 根據 URL 設定 iframe 的大小
+      if (url === 'https://413730663.github.io/5/') {
+        // 自我介紹的 iframe 大小為 90%
+        iframe.style.width = '90%';
+        iframe.style.height = '90%';
+      } else {
+        // 其他 iframe 大小為 80%
+        iframe.style.width = '80%';
+        iframe.style.height = '80%';
+      }
+
+      iframe.style.display = 'block'; // 顯示 iframe
+    }
+
+    // 隱藏 iframe
+    function hideIframe() {
+      const iframe = document.getElementById('content-frame');
+      iframe.style.display = 'none'; // 隱藏 iframe
+    }
+
+    // 顯示或隱藏選單（滑入滑出效果）
+    document.addEventListener('mousemove', (event) => {
+      const menu = document.getElementById('menu');
+      if (event.clientY < 250) {
+        menu.style.transition = 'transform 0.3s ease-in-out';
+        menu.style.transform = 'translateY(0)'; // 滑入
+      } else {
+        menu.style.transition = 'transform 0.3s ease-in-out';
+        menu.style.transform = 'translateY(-100%)'; // 滋出
+      }
+    });
+
+    // 頁面載入時隱藏選單
+    window.onload = () => {
+      const iframe = document.getElementById('content-frame');
+      iframe.src = 'https://413730663.github.io/5/'; // 預載入自我介紹的內容
+      iframe.style.display = 'none'; // 預載入但不顯示
+      const menu = document.getElementById('menu');
+      menu.style.transform = 'translateY(-100%)'; // 初始狀態隱藏選單
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* 動畫放在最底層 */
+}
+
+body {
+  font-family: '微軟正黑體', Arial, sans-serif;
+}
+
+/* 選單樣式 */
+.menu {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(255, 175, 204, 0.5); /* 選單背景顏色加透明度 */
+  display: flex;
+  gap: 20px; /* 選單項目間距 */
+  border-radius: 5px;
+  z-index: 2; /* 選單放在最上層 */
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #1b263b; /* 文字顏色 */
+  font-size: 30px; /* 文字大小 */
+  font-family: '微軟正黑體', Arial, sans-serif; /* 文字字型 */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: color 0.3s; /* 平滑過渡效果 */
+}
+
+.menu a:hover {
+  color: #778da9; /* 滑鼠移動到上面時的文字顏色 */
+}
+
+/* 子選單樣式 */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(255, 175, 204, 0.8); /* 子選單背景顏色加透明度 */
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.dropdown:hover .submenu {
+  display: flex;
+}
+
+.submenu a {
+  font-size: 20px; /* 子選單文字大小 */
+}
+
+/* iframe 樣式 */
+iframe#content-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* 寬度為視窗的 80% */
+  height: 80%; /* 高度為視窗的 80% */
+  background-color: rgba(0, 0, 0, 0.2); /* 背景透明度為 0.2 */
+  z-index: 1; /* iframe 放在第二層 */
+  border: none;
+  border-radius: 10px;
+}
